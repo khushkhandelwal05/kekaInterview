@@ -28,6 +28,11 @@ public class GlobalExceptionHandler {
         return build(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage(), request, null);
     }
 
+    @ExceptionHandler(DownstreamUnavailableException.class)
+    public ResponseEntity<ErrorResponse> handleDownstreamUnavailable(DownstreamUnavailableException ex, HttpServletRequest request) {
+        return build(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage(), request, null);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
         Map<String, String> fieldErrors = new LinkedHashMap<>();
